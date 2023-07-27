@@ -1,0 +1,24 @@
+.header-main {
+    width: 100%;
+    height: 20vh;
+    background-color: $color-primario;
+    display: grid;
+    justify-items: center;
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    h2 {
+        font-family: $fuente-title;
+        font-size: $size-fuente1;
+        color: $color-fondo;
+    }
+
+    p {
+        font-family: $fuente-sutitulos;
+        font-size: $size-fuente2;
+        color: $color-fondo;
+    }
+}

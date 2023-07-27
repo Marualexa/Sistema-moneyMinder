@@ -1,0 +1,47 @@
+.movement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    background-color: #e6f9ff;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    .content {
+        width: 100%;
+
+        h4 {
+            font-family: $fuente-title;
+            color: $color-fuente2;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-family: $fuente-sutitulos;
+            color: $color-fuente1;
+        }
+    }
+
+    .action {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-direction: column;
+
+        img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            border-bottom: 16px;
+        }
+
+        .red {
+            color: $color-money1;
+        }
+
+        .green {
+            color: $color-money2;
+        }
+    }
+}
