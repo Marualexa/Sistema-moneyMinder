@@ -16,8 +16,23 @@
 </template>
 
 <script setup>
-import { defineEmits } from "vue";
+import { toRefs, defineProps, defineEmits } from "vue";
 import Operacion from "./OperationMoven.vue";
+
+const props = defineProps({
+  movements: {
+    type: Array,
+    default: () => [],
+  },
+});
+
+const movements = [
+  {
+    title: ["Ingreso de mes"],
+    description: ["Sueldo del mes de agosto"],
+    amount: "10.000,00",
+  },
+];
 
 const emit = defineEmits(["remove"]);
 

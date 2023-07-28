@@ -1,20 +1,18 @@
 <template>
   <div class="movement">
     <div class="content">
-      <h4>{{ title }}</h4>
-      <p>{{ description }}</p>
+      <h4>Ingreso</h4>
+      <p>Saldo actual del mes de agosto 23</p>
     </div>
     <div class="action">
       <img src="../../assets/eliminar.png" alt="" @click="remove" />
-      <p :class="{ red: isNegative, green: !isNegative }">
-        {{ amountCurrency }}
-      </p>
+      <p :class="{ red: isNegative, green: !isNegative }">100.000,00</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, defineProps, toRefs } from "vue";
+import { computed, defineProps, defineEmits, toRefs } from "vue";
 
 const props = defineProps({
   id: {
@@ -33,7 +31,7 @@ const props = defineProps({
 
 const { id, title, description, amount } = toRefs(props);
 
-const amountCurrency = computed(() => currencyFormater.format(amount.value));
+// const amountCurrency = computed(() => currencyFormater.format(amount.value));
 
 const emit = defineEmits(["remove"]);
 
