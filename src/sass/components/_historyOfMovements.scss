@@ -3,13 +3,21 @@
     padding: 0 8px 38px 0;
     color: $color-fuente1;
     background-color: $color-fondo;
-    
+
     .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         color: $color-fuente2;
         font-family: $color-fuente1;
         padding: 15px;
         font-weight: bolder;
-        font-size: 16px;
+        font-size: 18px;
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     .content {
@@ -17,5 +25,14 @@
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
+        gap: 8px;
+
+        .btn {
+            display: grid;
+            align-self: center;
+            font-family: $fuente-sutitulos;
+            background-color: $color-fuente2;
+            color: $color-fondo;
+        }
     }
 }

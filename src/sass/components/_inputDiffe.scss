@@ -8,7 +8,7 @@
     grid-template-areas:
         "input1 input2"
         "input3 input4"
-        ". button";
+        "button button";
     padding: 15px;
 
     .input-search {
@@ -16,12 +16,14 @@
         height: 35px;
         margin-right: 10px;
         border-radius: 10px;
+        padding-left: 10px;
     }
 
     .date {
         grid-area: input2;
         height: 35px;
         border-radius: 10px;
+        padding-left: 10px;
     }
 
     .select-money {
@@ -29,18 +31,24 @@
         height: 35px;
         border-radius: 10px;
         margin-right: 10px;
+        background-color: white;
+        padding-left: 10px;
     }
 
     .select-order {
         grid-area: input4;
         height: 35px;
         border-radius: 10px;
+        background-color: white;
+        padding-left: 10px;
     }
 
     .btn {
         grid-area: button;
         display: grid;
         align-self: center;
+        background-color: $color-fuente2;
+        color: $color-fondo;
     }
 
 }

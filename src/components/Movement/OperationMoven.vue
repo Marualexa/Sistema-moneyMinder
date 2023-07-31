@@ -1,12 +1,13 @@
 <template>
   <div class="movement">
     <div class="content">
-      <h4>Ingreso</h4>
-      <p>Saldo actual del mes de agosto 23</p>
+      <h4>{{ title }}</h4>
+      <p>{{ description }}</p>
     </div>
     <div class="action">
-      <img src="../../assets/eliminar.png" alt="" @click="remove" />
-      <p :class="{ red: isNegative, green: !isNegative }">100.000,00</p>
+      <img class="edi" src="../../assets/edictar.png" alt="" />
+      <img class="eli" src="../../assets/eliminar.png" alt="" @click="remove" />
+      <p :class="{ red: isNegative, green: !isNegative }">{{ amount }}</p>
     </div>
   </div>
 </template>
@@ -25,13 +26,11 @@ const props = defineProps({
     type: String,
   },
   amount: {
-    type: Number,
+    type: String,
   },
 });
 
 const { id, title, description, amount } = toRefs(props);
-
-// const amountCurrency = computed(() => currencyFormater.format(amount.value));
 
 const emit = defineEmits(["remove"]);
 

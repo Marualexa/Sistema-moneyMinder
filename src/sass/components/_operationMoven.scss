@@ -4,10 +4,11 @@
     align-items: center;
     width: 95%;
     padding: 16px;
-    background-color: #e6f9ff;
+    background-color: $color-fondo;
     border-radius: 8px;
     box-sizing: border-box;
     margin-left: 10px;
+    border: 1px solid $color-fuente2;
 
     .content {
         width: 100%;
@@ -17,39 +18,53 @@
             font-family: $fuente-title;
             color: $color-fuente2;
             margin-bottom: 8px;
-            font-family: $fuente-title;
-            font-size: 20px;
+            font-family: $color-fondo;
+            font-size: 16px;
             font-weight: bold;
         }
 
         p {
             font-family: $fuente-sutitulos;
-            color: $color-fuente1;
+            color: $color-fuente2;
             font-family: $fuente-sutitulos;
             font-size: 15px;
         }
     }
 
     .action {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        margin-right: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "edictar eliminar"
+            "precio precio";
+        margin-right: 20px;
 
-        img {
-            width: 25px;
-            height: 25px;
+        .edi {
+            width: 20px;
+            height: 20px;
             object-fit: contain;
             margin-bottom: 10px;
+            grid-area: edictar;
+            margin-right: 10px;
+        }
+
+        .eli {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            grid-area: eliminar;
         }
 
         .red {
             color: $color-money1;
+            grid-area: precio;
         }
 
         .green {
             color: $color-money2;
+            grid-area: precio;
         }
     }
 }
