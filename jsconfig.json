@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es5",
         "module": "esnext",
-        "baseUrl": "./Sistema-moneyMinder/",
+        "baseUrl": "./moneyminder/",
         "moduleResolution": "node",
         "paths": {
             "@/*": [

@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/Sistema-moneyMinder/',
+  base: '/moneyminder/',
   resolve: {
     alias: {
       '@img': fileURLToPath(new URL('src/assets/', import.meta.url)),
