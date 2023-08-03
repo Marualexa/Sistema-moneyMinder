@@ -1,7 +1,5 @@
 <template>
-  <ImportApp />
+  <router-view />
 </template>
 
-<script setup>
-import ImportApp from "./components/ImportApp.vue";
-</script>
+<script setup></script>

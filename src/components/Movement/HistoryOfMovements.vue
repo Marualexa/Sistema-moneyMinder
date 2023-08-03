@@ -1,7 +1,8 @@
 <template>
   <div class="movements">
     <h2 class="title">
-      Hostorial Registrado <span><img src="../../assets/mas.png" alt="" /></span>
+      Hostorial Registrado
+      <span><img @click="newMovil" src="../../assets/mas.png" alt="" /></span>
     </h2>
     <div class="content">
       <Operacion
@@ -22,7 +23,9 @@
 import { defineProps, defineEmits, onMounted, ref, reactive } from "vue";
 import Operacion from "./OperationMoven.vue";
 import { useAsync } from "../../hooks/useAsync";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const { result, makeRequest } = useAsync();
 const page = ref("1");
 const limit = ref("5");
@@ -62,6 +65,10 @@ const emit = defineEmits(["remove"]);
 const remove = (id) => {
   emit("remove", id);
 };
+
+function newMovil() {
+  router.push({ name: "MotionRecord" });
+}
 </script>
 
 <style lang="sass">
