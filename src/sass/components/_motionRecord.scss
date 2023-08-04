@@ -62,7 +62,7 @@
                 border: 2px solid $color-fuente2;
                 border-radius: 50%;
 
-                &:hover {
+                &:checked {
                     background-color: $color-fuente2;
                 }
             }
