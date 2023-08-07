@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="title-prin">
-      <p>Nuevo movimiento</p>
+      <p>Editar movimiento</p>
       <img @click="closet" src="../assets/closet.svg" alt="" />
     </div>
-    <form @submit.prevent="createMovent">
+    <form @submit.prevent="editMovent">
       <div class="mb-3">
         <label for="" class="form-label">Titulo</label>
         <input type="text" v-model="registMovent.title" class="form-control" />
@@ -53,16 +53,16 @@
         </div>
       </div>
       <div class="action">
-        <button>Agregar movimiento</button>
+        <button>Guardar cambio</button>
       </div>
     </form>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
 import { useAsync } from "../hooks/useAsync";
-import { reactive, computed } from "vue";
+import { reactive, onMounted, computed, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { Joi } from "vue-joi-validation";
 
 const router = useRouter();
@@ -84,47 +84,8 @@ const data = {
   title: Joi.string().required().max(5),
   amount: Joi.number().positive().precision(2).required(),
   description: Joi.string().required(),
-  movementType: Joi.string().valid('Ingreso', 'Gasto').required(),
+  movementType: Joi.string().valid("Ingreso", "Gasto").required(),
 };
-
-const hasError = computed(() => {
-  return (property) => {
-    return errorObject.errorName === property;
-  };
-});
-
-function createMovent() {
-  const resultForm = Joi.validate(registMovent, data, async (err, value) => {
-    if (err) {
-      let starForm = err.message;
-      let starIndex = starForm.indexOf("[") + 1;
-      let endIndex = starForm.indexOf("]");
-      let element = starForm.substring(starIndex, endIndex);
-
-      let cadena = element;
-
-      const string = cadena.slice(1);
-      const string2 = string.indexOf("'");
-      const final = string.slice(0, string2);
-      let messageIndix = string.slice(string2 + 1);
-
-      errorObject.errorName = final;
-      errorObject.errorMessage = final + " " + messageIndix;
-    } else {
-      await makeRequest("moments", {}, "POST", {
-        title: registMovent.title,
-        amount: registMovent.amount,
-        description: registMovent.description,
-        movementType: registMovent.movementType,
-      });
-      registMovent.title = "";
-      registMovent.amount = "";
-      registMovent.description = "";
-      registMovent.movementType = "Ingreso";
-      router.push({ name: "ImportApp", params: { id: result.value.id } });
-    }
-  });
-}
 
 function closet() {
   router.push({ name: "ImportApp" });

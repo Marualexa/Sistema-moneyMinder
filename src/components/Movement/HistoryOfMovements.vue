@@ -39,7 +39,7 @@ const movements = async () => {
     _page: page.value,
     _limit: limit.value,
   });
-  concMovement.result = [...result.value, ...concMovement.result];
+  concMovement.result = [...concMovement.result, ...result.value];
 
   return result;
 };

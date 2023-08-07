@@ -21,121 +21,121 @@
       "id": 1,
       "title": "ingreso",
       "description": "Operación de principio de mess",
-      "amount": "10.000,00"
+      "amount": 10000.00
     },
     {
       "id": 2,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "100,00"
+      "amount": 100.00
     },
     {
       "id": 3,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "100.000,00"
+      "amount": 100000.00
     },
     {
       "id": 4,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "1.000,00"
+      "amount": 1000.00
     },
     {
       "id": 5,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "1.00"
+      "amount": 1.00
     },
     {
       "id": 6,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "15.000,00"
+      "amount": 15000.00
     },
     {
       "id": 7,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "100.00"
+      "amount": 100.00
     },
     {
       "id": 8,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "2.00"
+      "amount": 2.00
     },
     {
       "id": 9,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "20.00"
+      "amount": 20.00
     },
     {
       "id": 10,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "25.00"
+      "amount": 25.00
     },
     {
       "id": 11,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "30.00"
+      "amount": 30.00
     },
     {
       "id": 12,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "35.00"
+      "amount": 35.00
     },
     {
       "id": 13,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "40.00"
+      "amount": 40.00
     },
     {
       "id": 14,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "45.00"
+      "amount": 45.00
     },
     {
       "id": 15,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "50.00"
+      "amount": 50.00
     },
     {
       "id": 16,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "55.00"
+      "amount": 55.00
     },
     {
       "id": 17,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "60.00"
+      "amount": 60.00
     },
     {
       "id": 18,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "65.00"
+      "amount": 65.00
     },
     {
       "id": 19,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "70.00"
+      "amount": 70.00
     },
     {
       "id": 20,
       "title": "ingreso",
       "description": "Operación de principio de mes",
-      "amount": "75.00"
+      "amount": 75.00
     },
     {
       "title": "Gasto",
