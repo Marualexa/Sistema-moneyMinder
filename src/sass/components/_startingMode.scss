@@ -1,0 +1,20 @@
+.splashScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: $color-fuente2;
+
+    h1 {
+        color: $color-fondo;
+
+        span {
+            color: $color-money2;
+        }
+    }
+
+    p {
+        color: $color-fondo;
+    }
+}

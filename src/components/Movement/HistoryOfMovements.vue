@@ -6,13 +6,13 @@
     </h2>
     <div class="content">
       <Operacion
-        v-for="{ id, title, description, amount } in concMovement.result"
+        v-for="{ id, title, description, amount, movementType } in concMovement.result"
         :key="id"
         :id="id"
         :title="title"
         :description="description"
+        :movementType="movementType"
         :amount="amount"
-        @remove="remove"
       />
       <button type="button" class="btn btn-info" @click="pageMas">Cargar +</button>
     </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, onMounted, ref, reactive } from "vue";
+import { defineProps, onMounted, ref, reactive } from "vue";
 import Operacion from "./OperationMoven.vue";
 import { useAsync } from "../../hooks/useAsync";
 import { useRouter } from "vue-router";
@@ -59,12 +59,6 @@ const props = defineProps({
     default: () => [],
   },
 });
-
-const emit = defineEmits(["remove"]);
-
-const remove = (id) => {
-  emit("remove", id);
-};
 
 function newMovil() {
   router.push({ name: "MotionRecord" });

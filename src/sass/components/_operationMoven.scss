@@ -13,7 +13,7 @@
     .content {
         width: 100%;
         padding: 15px;
-
+        gap: 0;
         h4 {
             font-family: $fuente-title;
             color: $color-fuente2;
@@ -60,11 +60,13 @@
         .red {
             color: $color-money1;
             grid-area: precio;
+            padding-top: 10px;
         }
 
         .green {
             color: $color-money2;
             grid-area: precio;
+            padding-top: 10px;
         }
     }
 }

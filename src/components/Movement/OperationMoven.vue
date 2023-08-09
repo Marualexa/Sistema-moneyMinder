@@ -3,6 +3,7 @@
     <div class="content">
       <h4>{{ title }}</h4>
       <p>{{ description }}</p>
+      <p>{{ movementType }}</p>
     </div>
     <div class="action">
       <img class="edi" @click="moventEdit" src="../../assets/edictar.png" alt="" />
@@ -13,10 +14,9 @@
 </template>
 
 <script setup>
-import { computed, defineProps, defineEmits, toRefs } from "vue";
+import { computed, defineProps, toRefs } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-
 
 const currencyFormater = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -33,22 +33,31 @@ const props = defineProps({
   description: {
     type: String,
   },
+  movementType: {
+    type: String,
+  },
   amount: {
     type: Number,
   },
 });
 
-const { id, title, description, amount } = toRefs(props);
+const { id, title, description, movementType, amount } = toRefs(props);
 
 const amountCurrency = computed(() => currencyFormater.format(amount.value));
 
-const emit = defineEmits(["remove"]);
+const isNegative = computed(() => {
+  if (movementType.value === "Ingreso") {
+    return false;
+  } else {
+    return true;
+  }
+});
 
-const remove = () => {
-  emit("remove", id.value);
-};
-
-const isNegative = computed(() => amount.value < 0);
+async function remove() {
+  console.log('data')
+  // await makeRequest(`moments/${id}`, {}, "delete");
+  // router.push({ name: "ImportApp" });
+}
 
 function moventEdit() {
   router.push({ name: "editMovement", params: { id: id.value } });
