@@ -18,16 +18,16 @@
   },
   "moments": [
     {
-      "title": "Ingreso de mes",
-      "amount": 15000,
-      "description": "pago",
+      "title": "Entrada del mes",
+      "amount": 1000,
+      "description": "Pago del mes 14/08/23",
       "movementType": "Ingreso",
       "id": 1
     },
     {
-      "title": "Egreso de comida",
+      "title": "gasto",
       "amount": 200,
-      "description": "Gasto de comida",
+      "description": "pago de servicios",
       "movementType": "Gasto",
       "id": 2
     }

@@ -1,4 +1,6 @@
 <template>
+  <ModelAdd v-if="isLonding && !errorData" />
+  <ModelError v-if="errorData && !isLonding" />
   <div class="container">
     <div class="title-prin">
       <p>Nuevo movimiento</p>
@@ -83,11 +85,13 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { useAsync } from "../hooks/useAsync";
-import { reactive, computed } from "vue";
+import { reactive, computed, ref } from "vue";
 import { Joi } from "vue-joi-validation";
+import ModelAdd from "./Modales/LoadModel.vue";
+import ModelError from "./Modales/ModelError.vue";
 
 const router = useRouter();
-const { result, makeRequest } = useAsync();
+const { result, makeRequest, isLoading, errorData } = useAsync();
 
 const registMovent = reactive({
   title: "",
@@ -132,6 +136,7 @@ function createMovent() {
       errorObject.errorName = final;
       errorObject.errorMessage = final + " " + messageIndix;
     } else {
+      isLoading.value = true;
       await makeRequest("moments", {}, "POST", {
         title: registMovent.title,
         amount: registMovent.amount,
@@ -142,6 +147,7 @@ function createMovent() {
       registMovent.amount = "";
       registMovent.description = "";
       registMovent.movementType = "Ingreso";
+      isLoading.value = false;
       router.push({ name: "ImportApp", params: { id: result.value.id } });
     }
   });

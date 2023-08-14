@@ -6,15 +6,21 @@
     height: 100vh;
     background-color: $color-fuente2;
 
+    img {
+        vertical-align: middle;
+        width: 350px;
+        height: 350px;
+        object-fit: contain;
+    }
+
     h1 {
         color: $color-fondo;
-
-        span {
-            color: $color-money2;
-        }
+        font-family: $fuente-title;
     }
 
     p {
         color: $color-fondo;
+        font-size: 18px;
+        font-family: $fuente-sutitulos;
     }
 }

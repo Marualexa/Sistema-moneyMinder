@@ -1,4 +1,6 @@
 <template>
+  <LoadModel v-if="!errorData && isLoading" />
+  <ModelError v-if="errorData && !isLoading" />
   <div class="container">
     <div class="title-prin">
       <p>Editar movimiento</p>
@@ -85,11 +87,13 @@ import { useAsync } from "../hooks/useAsync";
 import { reactive, onMounted, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { Joi } from "vue-joi-validation";
+import LoadModel from "./Modales/LoadModel.vue";
+import ModelError from "./Modales/ModelError.vue";
 
 const router = useRouter();
 const route = useRoute();
 const { id } = route.params;
-const { result, makeRequest } = useAsync();
+const { result, makeRequest, isLoading, errorData } = useAsync();
 
 const registMovent = reactive({
   title: "",
@@ -142,12 +146,14 @@ function editMovent() {
       errorObject.errorMessage = final;
       errorObject.errorMessage = final + " " + messageIndix;
     } else {
+      isLoading.value = true;
       await makeRequest(`moments/${id}`, {}, "put", {
         title: registMovent.title,
         amount: registMovent.amount,
         description: registMovent.description,
         movementType: registMovent.movementType,
       });
+      isLoading.value = false;
       router.push({ name: "ImportApp", params: { id: result.value.id } });
     }
   });

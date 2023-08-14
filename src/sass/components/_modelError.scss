@@ -1,0 +1,33 @@
+.modal-style {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+
+    .modal__container {
+        background-color: #ffffff;
+        width: 70%;
+        height: 25%;
+        display: grid;
+        place-items: center;
+        position: absolute;
+        top: 100px;
+        box-shadow: 10px 10px 71px 1px rgba(0, 0, 0, 0.75);
+
+        h2 {
+            font-size: 18px;
+            font-family: $fuente-title;
+            margin-top: 15px;
+        }
+
+        p {
+            display: flex;
+            margin: 30px;
+            text-align: center;
+            font-family: "Red Hat Display", sans-serif;
+            font-weight: 800;
+        }
+    }
+}

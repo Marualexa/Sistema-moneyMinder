@@ -1,5 +1,6 @@
 <template>
   <div class="movement">
+    <DelectModel :id="id" v-if="showDelect" @closet-modal="modelEvet" />
     <div class="content">
       <h4>{{ title }}</h4>
       <p>{{ description }}</p>
@@ -14,9 +15,20 @@
 </template>
 
 <script setup>
-import { computed, defineProps, toRefs } from "vue";
+import { computed, defineProps, toRefs, ref } from "vue";
 import { useRouter } from "vue-router";
+import DelectModel from "../Modales/DelectModel.vue";
+
 const router = useRouter();
+const showDelect = ref(false);
+
+function remove() {
+  showDelect.value = true;
+}
+
+function modelEvet(arg) {
+  showDelect.value = false;
+}
 
 const currencyFormater = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -41,9 +53,17 @@ const props = defineProps({
   },
 });
 
+const formatAmount = (value) => currencyFormater.format(value);
+
 const { id, title, description, movementType, amount } = toRefs(props);
 
-const amountCurrency = computed(() => currencyFormater.format(amount.value));
+const amountCurrency = computed(() => {
+  if (movementType.value === "Gasto") {
+    return "-" + formatAmount(amount.value);
+  } else {
+    return formatAmount(amount.value);
+  }
+});
 
 const isNegative = computed(() => {
   if (movementType.value === "Ingreso") {
@@ -52,12 +72,6 @@ const isNegative = computed(() => {
     return true;
   }
 });
-
-async function remove() {
-  console.log('data')
-  // await makeRequest(`moments/${id}`, {}, "delete");
-  // router.push({ name: "ImportApp" });
-}
 
 function moventEdit() {
   router.push({ name: "editMovement", params: { id: id.value } });

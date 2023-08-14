@@ -1,0 +1,26 @@
+.loadModal {
+    width: 100px;
+    height: 100px;
+    margin: 110px auto 0;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 1.0s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    transition: all 0.5s ease-in;
+    animation-name: rotate;
+    animation-duration: 1.0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    .text-center {
+        .spinner-border {
+            --bs-spinner-width: 4rem;
+            --bs-spinner-height: 4rem;
+        }
+    }
+
+}

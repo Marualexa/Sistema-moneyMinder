@@ -5,6 +5,7 @@
       <span><img @click="newMovil" src="../../assets/mas.png" alt="" /></span>
     </h2>
     <div class="content">
+      
       <Operacion
         v-for="{ id, title, description, amount, movementType } in concMovement.result"
         :key="id"
@@ -14,19 +15,23 @@
         :movementType="movementType"
         :amount="amount"
       />
-      <button type="button" class="btn btn-info" @click="pageMas">Cargar +</button>
+      <LoadModel v-if="errorData && !isLoading" />
+      <ModelError v-if="!errorData && isLoading" />
+      <button type="button" class="btn button btn-info" @click="pageMas">Cargar +</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, onMounted, ref, reactive } from "vue";
+import { defineProps, onMounted, ref, reactive, provide } from "vue";
 import Operacion from "./OperationMoven.vue";
 import { useAsync } from "../../hooks/useAsync";
 import { useRouter } from "vue-router";
+import LoadModel from "../Modales/LoadModel.vue";
+import ModelError from "../Modales/ModelError.vue";
 
 const router = useRouter();
-const { result, makeRequest } = useAsync();
+const { result, makeRequest, isLoading, errorData } = useAsync();
 const page = ref("1");
 const limit = ref("5");
 
@@ -34,12 +39,19 @@ const concMovement = reactive({
   result: [],
 });
 
-const movements = async () => {
+const movements = async (reload = false) => {
   await makeRequest("moments", {
     _page: page.value,
     _limit: limit.value,
   });
-  concMovement.result = [...concMovement.result, ...result.value];
+
+  if(!reload) {
+    concMovement.result = [...concMovement.result, ...result.value];
+  }
+  else {
+    concMovement.result = [...[], ...result.value];
+    
+  }
 
   return result;
 };
@@ -63,6 +75,10 @@ const props = defineProps({
 function newMovil() {
   router.push({ name: "MotionRecord" });
 }
+
+provide("restart", {
+  movements
+})
 </script>
 
 <style lang="sass">
