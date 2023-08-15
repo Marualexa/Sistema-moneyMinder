@@ -1,11 +1,12 @@
 <template>
-  <ModelAdd v-if="isLonding && !errorData" />
-  <ModelError v-if="errorData && !isLonding" />
+  <ModelAdd v-if="!isLoading && errorData" />
+  <ModelError v-if="errorData && !isLoading" />
   <div class="container">
     <div class="title-prin">
       <p>Nuevo movimiento</p>
       <img @click="closet" src="../assets/closet.svg" alt="" />
     </div>
+
     <form @submit.prevent="createMovent">
       <div class="mb-3">
         <label for="" class="form-label">Titulo</label>
@@ -42,6 +43,16 @@
           :class="{ 'is-invalid': hasError('description') }"
         ></textarea>
         <div v-if="hasError('description')" class="invalid-feedback">
+          {{ errorObject.errorMessage }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">Categoria</label>
+        <select v-model="registMovent.categoria" class="select-order" id="currency">
+          <option v-for="{ text, value } in options" :key="value">{{ text }}</option>
+        </select>
+        <div v-if="hasError('categoria')" class="invalid-feedback">
           {{ errorObject.errorMessage }}
         </div>
       </div>
@@ -97,8 +108,15 @@ const registMovent = reactive({
   title: "",
   amount: "",
   description: "",
+  categoria: "",
   movementType: "Ingreso",
 });
+
+const options = ref([
+  { text: 'Mascotas', value: '1' },
+  { text: 'Servicios publicos', value: '2' },
+  { text: 'Gastos varios', value: '3' }
+]);
 
 const errorObject = reactive({
   errorName: "",
@@ -109,6 +127,7 @@ const data = {
   title: Joi.string().required().max(25),
   amount: Joi.number().positive().precision(2).required(),
   description: Joi.string().required(),
+  categoria: Joi.string().valid("Mascotas", "Servicios publicos", "Gastos varios").required(),
   movementType: Joi.string().valid("Ingreso", "Gasto").required(),
 };
 
@@ -141,11 +160,13 @@ function createMovent() {
         title: registMovent.title,
         amount: registMovent.amount,
         description: registMovent.description,
+        categoria: registMovent.categoria,
         movementType: registMovent.movementType,
       });
       registMovent.title = "";
       registMovent.amount = "";
       registMovent.description = "";
+      registMovent.categoria = "";
       registMovent.movementType = "Ingreso";
       isLoading.value = false;
       router.push({ name: "ImportApp", params: { id: result.value.id } });

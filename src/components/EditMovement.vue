@@ -46,6 +46,16 @@
         </div>
       </div>
 
+      <div class="mb-3">
+        <label for="" class="form-label">Categoria</label>
+        <select v-model="registMovent.categoria" class="select-order" id="currency">
+          <option v-for="{ text, value } in options" :key="value">{{ text }}</option>
+        </select>
+        <div v-if="hasError('categoria')" class="invalid-feedback">
+          {{ errorObject.errorMessage }}
+        </div>
+      </div>
+
       <div class="field">
         <label class="radio-label">
           <input
@@ -84,7 +94,7 @@
 
 <script setup>
 import { useAsync } from "../hooks/useAsync";
-import { reactive, onMounted, computed } from "vue";
+import { reactive, onMounted, computed, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { Joi } from "vue-joi-validation";
 import LoadModel from "./Modales/LoadModel.vue";
@@ -99,6 +109,7 @@ const registMovent = reactive({
   title: "",
   amount: "",
   description: "",
+  categoria: "",
   movementType: "Ingreso",
 });
 
@@ -107,10 +118,19 @@ const errorObject = reactive({
   errorMessage: "",
 });
 
+const options = ref([
+  { text: "Mascotas", value: "1" },
+  { text: "Servicios publicos", value: "2" },
+  { text: "Gastos varios", value: "3" },
+]);
+
 const data = {
   title: Joi.string().required().max(25),
   amount: Joi.number().positive().precision(2).required(),
   description: Joi.string().required(),
+  categoria: Joi.string()
+    .valid("Mascotas", "Servicios publicos", "Gastos varios")
+    .required(),
   movementType: Joi.string().valid("Ingreso", "Gasto").required(),
 };
 
@@ -119,6 +139,7 @@ onMounted(async () => {
   registMovent.title = result.value.title;
   registMovent.amount = result.value.amount;
   registMovent.description = result.value.description;
+  registMovent.categoria = result.value.categoria;
   registMovent.movementType = result.value.movementType;
 });
 
@@ -151,6 +172,7 @@ function editMovent() {
         title: registMovent.title,
         amount: registMovent.amount,
         description: registMovent.description,
+        categoria: registMovent.categoria,
         movementType: registMovent.movementType,
       });
       isLoading.value = false;

@@ -2,12 +2,11 @@
   <div class="input">
     <input type="text" class="input-search" placeholder="Buscar Movimiento" />
     <input type="date" class="date" />
-    <select class="select-money" id="currency">
-      <option value="">Seleciona la moneda</option>
-      <option value="USD">USD - Dólares estadounidenses</option>
-      <option value="COP">COP - Pesos colombianos</option>
-      <option value="VEF">VEF - Bolívares venezolanos</option>
+
+    <select class="select-money" v-model="currencyMoney" id="currency">
+      <option v-for="{ text, value } in options" :key="value">{{ text }}</option>
     </select>
+
     <select class="select-order" id="currency">
       <option value="text">Orden de movimientos</option>
       <option value="text">Ascedente</option>
@@ -17,7 +16,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const currencyMoney = ref("");
+
+const options = ref([
+  { text: "USD - Dólares estadounidenses", value: "1" },
+  { text: "COP - Pesos colombianos", value: "2" },
+  { text: "VEF - Bolívares venezolanos", value: "3" },
+]);
+</script>
 
 <style lang="sass">
 @import "../sass/globalStyle.scss"

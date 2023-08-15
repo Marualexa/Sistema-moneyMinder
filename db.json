@@ -18,18 +18,12 @@
   },
   "moments": [
     {
-      "title": "Entrada del mes",
-      "amount": 1000,
-      "description": "Pago del mes 14/08/23",
-      "movementType": "Ingreso",
-      "id": 1
-    },
-    {
-      "title": "gasto",
+      "title": "gastos",
       "amount": 200,
-      "description": "pago de servicios",
+      "description": "pago",
+      "categoria": "Servicios publicos",
       "movementType": "Gasto",
-      "id": 2
+      "id": 1
     }
   ]
 }

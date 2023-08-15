@@ -19,7 +19,7 @@ const HomeMain = defineAsyncComponent(() =>
     new Promise((resolve) => {
       setTimeout(() => {
         resolve(import("./HomeMain.vue"));
-      }, 2500);
+      }, 500);
     })
 );
 </script>

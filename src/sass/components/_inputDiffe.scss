@@ -1,13 +1,15 @@
 .input {
     max-width: 350px;
-    height: 170px;
+    height: 275px;
     background-color: $color-fondo;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-        "input1 input2"
-        "input3 input4"
+        "input1 input1"
+        "input2 input2"
+        "input3 input3"
+        "input4 input4"
         "button button";
     padding: 15px;
 
@@ -17,7 +19,7 @@
         margin-right: 10px;
         border-radius: 10px;
         padding-left: 10px;
-        width: 150px;
+        width: 312px;
     }
 
     .date {
@@ -25,7 +27,7 @@
         height: 35px;
         border-radius: 10px;
         padding-left: 10px;
-        width: 150px;
+        width: 312px;
     }
 
     .select-money {
@@ -35,7 +37,7 @@
         margin-right: 10px;
         background-color: white;
         padding-left: 10px;
-        width: 150px;
+        width: 312px;
     }
 
     .select-order {
@@ -44,7 +46,7 @@
         border-radius: 10px;
         background-color: white;
         padding-left: 10px;
-        width: 150px;
+        width: 312px;
     }
 
     .btn {

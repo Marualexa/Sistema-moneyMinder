@@ -37,11 +37,22 @@
             }
         }
 
+        .select-order {
+            grid-area: input3;
+            height: 35px;
+            border-radius: 10px;
+            margin-right: 10px;
+            background-color: white;
+            padding-left: 10px;
+            width: 300px;
+            border: 2px solid #00695C;
+        }
+
         .field {
             display: flex;
             justify-content: space-between;
             flex-direction: column;
-            padding: 16px 24px;
+            padding: 5px 24px;
 
             .radio-label {
                 display: flex;
@@ -69,7 +80,7 @@
         }
 
         .action {
-            padding: 40px 25px;
+            padding: 40px 5px;
 
             button {
                 color: $color-fondo;
