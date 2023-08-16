@@ -50,7 +50,7 @@
       <div class="mb-3">
         <label for="" class="form-label">Categoria</label>
         <select v-model="registMovent.categoria" class="select-order" id="currency">
-          <option v-for="{ text, value } in options" :key="value">{{ text }}</option>
+          <option v-for="option in options" :key="option.value" :value="option.value">{{ option.text }}</option>
         </select>
         <div v-if="hasError('categoria')" class="invalid-feedback">
           {{ errorObject.errorMessage }}
