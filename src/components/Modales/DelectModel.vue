@@ -13,7 +13,6 @@
 <script setup>
 import { useAsync } from "../../hooks/useAsync";
 import { defineEmits, defineProps, toRefs, inject } from "vue";
-import { useRouter } from "vue-router";
 
 const { makeRequest } = useAsync();
 const { movements } = inject("restart");
@@ -32,7 +31,7 @@ function closetModall() {
 }
 
 async function deletePost() {
-    await makeRequest(`moments/${id.value}`, {}, "delete")
+    await makeRequest(`movents/${id.value}`, {}, "delete")
     movements(true);
 }
 </script>

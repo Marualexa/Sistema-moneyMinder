@@ -16,14 +16,67 @@
   "profile": {
     "name": "typicode"
   },
-  "moments": [
+  "users": [
+    {
+      "firstName": "Mariana Alexandra",
+      "lastName": "Contreras omana",
+      "email": "contrerasomanam@gmail.com",
+      "password": "Mariana*2023",
+      "passwordVerif": "Mariana*2023",
+      "id": 1
+    }
+  ],
+  "movents": [
     {
       "title": "gastos",
       "amount": 200,
       "description": "pago",
-      "categoria": "Servicios publicos",
+      "categoria": "3",
+      "banco": "1",
       "movementType": "Gasto",
       "id": 1
+    },
+    {
+      "title": "Préstamo",
+      "amount": 67,
+      "description": "Préstamo",
+      "categoria": "1",
+      "banco": "1",
+      "movementType": "Gasto",
+      "id": 2
+    }
+  ],
+  "category": [
+    {
+      "text": "Mascotas",
+      "value": "1"
+    },
+    {
+      "text": "Servicios publicos",
+      "value": "2"
+    },
+    {
+      "text": "Gastos varios",
+      "value": "3"
+    },
+    {
+      "text": "Gastos verdura",
+      "value": "4"
+    }
+  ],
+  
+  "bank": [
+    {
+      "text": "Tesoro",
+      "value": "1"
+    },
+    {
+      "text": "Banco de venezuela",
+      "value": "2"
+    },
+    {
+      "text": "Bicentenario",
+      "value": "3"
     }
   ]
 }

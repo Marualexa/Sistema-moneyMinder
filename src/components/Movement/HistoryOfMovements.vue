@@ -6,13 +6,14 @@
     </h2>
     <div class="content">
       <Operacion
-        v-for="{ id, title, description, amount, movementType } in concMovement.result"
+        v-for="{ id, title, description, amount, movementType, banco } in concMovement.result"
         :key="id"
         :id="id"
         :title="title"
         :description="description"
         :movementType="movementType"
         :amount="amount"
+        :banco="banco"
       />
       <LoadModel v-if="errorData && !isLoading" />
       <ModelError v-if="!errorData && isLoading" />
@@ -54,7 +55,7 @@ const concMovement = reactive({
 const movements = async (reload = false) => {
   console.log("filtros", store.getFilterMov);
   const { nameMov, date, money, order } = store.getFilterMov;
-  await makeRequest("moments", {
+  await makeRequest("movents", {
     _page: page.value,
     _limit: limit.value,
     _nameMov: nameMov,

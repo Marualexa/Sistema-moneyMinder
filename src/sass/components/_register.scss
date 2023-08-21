@@ -1,0 +1,39 @@
+.login {
+    max-width: 350px;
+    height: auto;
+    display: grid;
+    place-items: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            display: flex;
+            width: 140px;
+            align-self: center;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: $color-fuente2;
+        }
+
+        p {
+            color: $color-fuente2;
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 0;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+    }
+
+    form {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
+}

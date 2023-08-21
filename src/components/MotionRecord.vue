@@ -50,9 +50,27 @@
       <div class="mb-3">
         <label for="" class="form-label">Categoria</label>
         <select v-model="registMovent.categoria" class="select-order" id="currency">
-          <option v-for="option in options" :key="option.value" :value="option.value">{{ option.text }}</option>
+          <option v-for="option in options" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
         </select>
         <div v-if="hasError('categoria')" class="invalid-feedback">
+          {{ errorObject.errorMessage }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">Banco</label>
+        <select v-model="registMovent.banco" class="select-order" id="currency">
+          <option
+            v-for="optionBank in optionsBanks"
+            :key="optionBank.value"
+            :value="optionBank.value"
+          >
+            {{ optionBank.text }}
+          </option>
+        </select>
+        <div v-if="hasError('banco')" class="invalid-feedback">
           {{ errorObject.errorMessage }}
         </div>
       </div>
@@ -96,7 +114,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { useAsync } from "../hooks/useAsync";
-import { reactive, computed, ref } from "vue";
+import { reactive, computed, ref, onMounted } from "vue";
 import { Joi } from "vue-joi-validation";
 import ModelAdd from "./Modales/LoadModel.vue";
 import ModelError from "./Modales/ModelError.vue";
@@ -109,14 +127,21 @@ const registMovent = reactive({
   amount: "",
   description: "",
   categoria: "",
+  banco: "",
   movementType: "Ingreso",
 });
 
-const options = ref([
-  { text: 'Mascotas', value: '1' },
-  { text: 'Servicios publicos', value: '2' },
-  { text: 'Gastos varios', value: '3' }
-]);
+onMounted(async () => {
+  await makeRequest("category")
+  console.log("result", result);
+  options.value = result.value;
+  await makeRequest("bank")
+  optionsBanks.value = result.value;
+});
+
+const options = ref([]);
+
+const optionsBanks = ref([]);
 
 const errorObject = reactive({
   errorName: "",
@@ -127,7 +152,8 @@ const data = {
   title: Joi.string().required().max(25),
   amount: Joi.number().positive().precision(2).required(),
   description: Joi.string().required(),
-  categoria: Joi.string().valid("Mascotas", "Servicios publicos", "Gastos varios").required(),
+  categoria: Joi.string().required(),
+  banco: Joi.string().required(),
   movementType: Joi.string().valid("Ingreso", "Gasto").required(),
 };
 
@@ -154,19 +180,23 @@ function createMovent() {
 
       errorObject.errorName = final;
       errorObject.errorMessage = final + " " + messageIndix;
+      console.log("final", messageIndix);
+      console.log("registMovent", registMovent);
     } else {
       isLoading.value = true;
-      await makeRequest("moments", {}, "POST", {
+      await makeRequest("movents", {}, "POST", {
         title: registMovent.title,
         amount: registMovent.amount,
         description: registMovent.description,
         categoria: registMovent.categoria,
+        banco: registMovent.banco,
         movementType: registMovent.movementType,
       });
       registMovent.title = "";
       registMovent.amount = "";
       registMovent.description = "";
       registMovent.categoria = "";
+      registMovent.banco = "";
       registMovent.movementType = "Ingreso";
       isLoading.value = false;
       router.push({ name: "ImportApp", params: { id: result.value.id } });

@@ -1,0 +1,38 @@
+.login {
+    max-width: 350px;
+    height: auto;
+    display: grid;
+    place-items: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            display: flex;
+            width: 140px;
+            align-self: center;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: $color-fuente2;
+        }
+    }
+
+    form {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
+
+    a {
+        color: $color-fuente2;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        margin: 30px;
+    }
+}

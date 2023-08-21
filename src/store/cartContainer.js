@@ -1,14 +1,13 @@
 import { defineStore } from "pinia";
-import { useAsync } from "../hooks/useAsync";
 
-export const useCartStore = defineStore('moment', {
+export const useCartStore = defineStore('movents', {
     state: () => ({
-        moment: false,
+        movent: false,
         filters: {}
     }),
     getters: {
         getMovements: (state) => {
-            return state.moment
+            return state.movent
         },
         getFilterMov: (state) => {
             return state.filters;
@@ -16,7 +15,7 @@ export const useCartStore = defineStore('moment', {
     },
     actions: {
         addInputMovents(param) {
-            this.moment = param;
+            this.movent = param;
         },
         setFilter(param) {
             this.filters = param;

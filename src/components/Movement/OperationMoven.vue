@@ -5,6 +5,7 @@
       <h4>{{ title }}</h4>
       <p>{{ description }}</p>
       <p>{{ movementType }}</p>
+      <p>{{ banco }}</p>
     </div>
     <div class="action">
       <img class="edi" @click="moventEdit" src="../../assets/edictar.png" alt="" />
@@ -51,11 +52,14 @@ const props = defineProps({
   amount: {
     type: Number,
   },
+  banco: {
+    type: String
+  }
 });
 
 const formatAmount = (value) => currencyFormater.format(value);
 
-const { id, title, description, movementType, amount } = toRefs(props);
+const { id, title, description, movementType, amount, banco } = toRefs(props);
 
 const amountCurrency = computed(() => {
   if (movementType.value === "Gasto") {

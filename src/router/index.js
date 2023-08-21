@@ -7,6 +7,8 @@ const router = createRouter({
         { path: '/moneyminder/newMovent', name: 'MotionRecord', component: () => import('../components/MotionRecord.vue') },
         { path: '/moneyminder/history/:id', name: 'HistoryOfMovent', component: () => import('../components/Movement/HistoryOfMovements.vue') },
         { path: '/moneyminder/editMovent/:id', name: 'editMovement', component: () => import('../components/EditMovement.vue') },
+        { path: '/moneyminder/login', name: 'login', component: () => import('../components/Registro/Login.vue') },
+        { path: '/moneyminder/register', name: 'register', component: () => import('../components/Registro/Register.vue') },
     ],
 });
 

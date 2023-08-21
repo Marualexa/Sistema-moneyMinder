@@ -6,6 +6,7 @@
       <p>Editar movimiento</p>
       <img @click="closet" src="../assets/closet.svg" alt="" />
     </div>
+
     <form @submit.prevent="editMovent">
       <div class="mb-3">
         <label for="" class="form-label">Titulo</label>
@@ -49,9 +50,27 @@
       <div class="mb-3">
         <label for="" class="form-label">Categoria</label>
         <select v-model="registMovent.categoria" class="select-order" id="currency">
-          <option v-for="option in options" :key="option.value" :value="option.value">{{ option.text }}</option>
+          <option v-for="option in options" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
         </select>
         <div v-if="hasError('categoria')" class="invalid-feedback">
+          {{ errorObject.errorMessage }}
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">Banco</label>
+        <select v-model="registMovent.banco" class="select-order" id="currency">
+          <option
+            v-for="optionBank in optionsBanks"
+            :key="optionBank.value"
+            :value="optionBank.value"
+          >
+            {{ optionBank.text }}
+          </option>
+        </select>
+        <div v-if="hasError('banco')" class="invalid-feedback">
           {{ errorObject.errorMessage }}
         </div>
       </div>
@@ -110,6 +129,7 @@ const registMovent = reactive({
   amount: "",
   description: "",
   categoria: "",
+  banco: "",
   movementType: "Ingreso",
 });
 
@@ -118,29 +138,31 @@ const errorObject = reactive({
   errorMessage: "",
 });
 
-const options = ref([
-  { text: "Mascotas", value: "1" },
-  { text: "Servicios publicos", value: "2" },
-  { text: "Gastos varios", value: "3" },
-]);
+const options = ref([]);
+
+const optionsBanks = ref([]);
 
 const data = {
   title: Joi.string().required().max(25),
   amount: Joi.number().positive().precision(2).required(),
   description: Joi.string().required(),
-  categoria: Joi.string()
-    .valid("Mascotas", "Servicios publicos", "Gastos varios")
-    .required(),
+  categoria: Joi.string().required(),
+  banco: Joi.string().required(),
   movementType: Joi.string().valid("Ingreso", "Gasto").required(),
 };
 
 onMounted(async () => {
-  await makeRequest(`moments/${id}`);
+  await makeRequest(`movents/${id}`);
   registMovent.title = result.value.title;
   registMovent.amount = result.value.amount;
   registMovent.description = result.value.description;
   registMovent.categoria = result.value.categoria;
+  registMovent.banco = result.value.banco;
   registMovent.movementType = result.value.movementType;
+  await makeRequest("category");
+  options.value = result.value;
+  await makeRequest("bank");
+  optionsBanks.value = result.value;
 });
 
 const hasError = computed(() => {
@@ -168,11 +190,12 @@ function editMovent() {
       errorObject.errorMessage = final + " " + messageIndix;
     } else {
       isLoading.value = true;
-      await makeRequest(`moments/${id}`, {}, "put", {
+      await makeRequest(`movents/${id}`, {}, "put", {
         title: registMovent.title,
         amount: registMovent.amount,
         description: registMovent.description,
         categoria: registMovent.categoria,
+        banco: registMovent.banco,
         movementType: registMovent.movementType,
       });
       isLoading.value = false;
